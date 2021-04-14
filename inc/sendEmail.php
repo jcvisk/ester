@@ -1,5 +1,5 @@
 ﻿<?php
-
+/*
 // Replace this with your own email address
 $siteOwnersEmail = 'amigotelcel349@gmail.com';
 
@@ -66,5 +66,5 @@ if($_POST) {
 	} # end if - there was a validation error
 
 }
-
+*/
 ?>

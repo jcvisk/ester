@@ -10,29 +10,30 @@ if($_POST) {
    $email = trim(stripslashes($_POST['contactEmail']));
    $subject = trim(stripslashes($_POST['contactSubject']));
    $contact_message = trim(stripslashes($_POST['contactMessage']));
-
+   $error = null;
    // Check Name
 	if (strlen($name) < 2) {
-		$error['name'] = "Please enter your name.";
+		$error['name'] = "Por favor ingrese su nombre.";
 	}
 	// Check Email
 	if (!preg_match('/^[a-z0-9&\'\.\-_\+]+@[a-z0-9\-]+\.([a-z0-9\-]+\.)*+[a-z]{2}/is', $email)) {
-		$error['email'] = "Please enter a valid email address.";
+		$error['email'] = "Por favor ingrese un correo electronico válido.";
 	}
 	// Check Message
 	if (strlen($contact_message) < 15) {
-		$error['message'] = "Please enter your message. It should have at least 15 characters.";
+		$error['message'] = "Por favor ingrese su mensaje. Debe tener al menos 15 caracteres.";
 	}
    // Subject
-	if ($subject == '') { $subject = "Contact Form Submission"; }
+	if ($subject == '') { $subject = "nvío del formulario de contacto"; }
 
 
    // Set Message
-   $message .= "Email from: " . $name . "<br />";
-	$message .= "Email address: " . $email . "<br />";
-   $message .= "Message: <br />";
+   $message = ""; 
+   $message .= "De: " . $name . "<br />";
+   $message .= "E-mail: " . $email . "<br />";
+   $message .= "Mensaje: <br />";
    $message .= $contact_message;
-   $message .= "<br /> ----- <br /> This email was sent from your site's contact form. <br />";
+   $message .= "<br /> ----- <br /> Este correo electrónico se envió desde el formulario de contacto del sitio https://reinaester.netlify.app/ <br />";
 
    // Set From: header
    $from =  $name . " <" . $email . ">";
@@ -50,7 +51,7 @@ if($_POST) {
       $mail = mail($siteOwnersEmail, $subject, $message, $headers);
 
 		if ($mail) { echo "OK"; }
-      else { echo "Something went wrong. Please try again."; }
+      else { echo "Algo salió mal. Inténtalo de nuevo."; }
 		
 	} # end if - no validation error
 
